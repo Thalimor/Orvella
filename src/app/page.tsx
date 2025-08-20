@@ -10,7 +10,7 @@ function Header() {
       <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
         <OrvellaLogo />
         <a href="https://discord.gg/rxJNyg9BUp" target="_blank" rel="noopener noreferrer">
-          <Button variant="outline">Contact Staff</Button>
+          <Button className="bg-accent text-white hover:bg-accent/90 hover:shadow-[0_0_20px_theme(colors.accent)] transition-all duration-300 transform hover:-translate-y-1">Contact Staff</Button>
         </a>
       </nav>
     </header>
