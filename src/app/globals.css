@@ -69,7 +69,12 @@
     @apply border-border;
   }
   body {
-    @apply bg-black text-foreground;
+    @apply text-foreground;
+    background-image: url('https://files.catbox.moe/1mfe52.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: hsl(var(--background));
   }
 }
 
