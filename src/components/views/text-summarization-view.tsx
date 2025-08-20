@@ -20,6 +20,7 @@ export function TextSummarizationView() {
       actionButtonText="Summarize Text"
       outputTitle="Summary"
       getExistingOutput={(output) => (output ? { existingSummary: output.summary } : {})}
+      getOutputText={(output) => output?.summary || ""}
       renderForm={(form) => (
         <FormField
           control={form.control}

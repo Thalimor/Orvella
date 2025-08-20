@@ -35,6 +35,7 @@ export function EmotionDesignerView() {
       actionButtonText="Transform Text"
       outputTitle="Emotionally Transformed Text"
       getExistingOutput={(output) => (output ? { existingTransformedText: output.transformedText } : {})}
+      getOutputText={(output) => output?.transformedText || ""}
       renderForm={(form) => (
         <div className="flex flex-col h-full">
           <FormField
@@ -107,7 +108,7 @@ export function EmotionDesignerView() {
         </div>
       )}
       renderOutput={(output) => (
-        <div className="text-foreground/80 whitespace-pre-wrap bg-black/20 p-4 rounded-md border border-white/10">
+        <div className="text-foreground/80 whitespace-pre-wrap bg-black/20 p-4 rounded-md border border-white/10 min-h-[150px]">
           {output?.transformedText || "The transformed text will appear here."}
         </div>
       )}

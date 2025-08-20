@@ -20,6 +20,7 @@ export function PromptCreationView() {
       actionButtonText="Engineer Prompt"
       outputTitle="Engineered Prompt"
       getExistingOutput={(output) => (output ? { existingPrompt: output.prompt } : {})}
+      getOutputText={(output) => output?.prompt || ""}
       renderForm={(form) => (
         <FormField
           control={form.control}

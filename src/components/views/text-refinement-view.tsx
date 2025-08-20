@@ -20,6 +20,7 @@ export function TextRefinementView() {
       actionButtonText="Refine Text"
       outputTitle="Refined Text"
       getExistingOutput={(output) => (output ? { existingRefinedText: output.refinedText } : {})}
+      getOutputText={(output) => output?.refinedText || ""}
       renderForm={(form) => (
         <FormField
           control={form.control}

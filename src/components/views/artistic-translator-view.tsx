@@ -8,6 +8,7 @@ import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/comp
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useState } from "react";
 
 const formSchema = z.object({
   text: z.string().min(2, "Please enter text to translate."),
@@ -38,6 +39,8 @@ const OutputDisplay = ({ output }: { output: ArtisticTranslatorOutput | null }) 
 );
 
 export function ArtisticTranslatorView() {
+  const [activeTab, setActiveTab] = useState("artistic");
+
   return (
     <AiToolLayout
       formSchema={formSchema}
@@ -51,6 +54,10 @@ export function ArtisticTranslatorView() {
             artistic: output.artisticTranslation,
         }
       } : {})}
+      getOutputText={(output) => {
+        if (!output) return "";
+        return activeTab === 'artistic' ? output.artisticTranslation : output.literalTranslation;
+      }}
       renderForm={(form) => (
         <div className="flex flex-col h-full gap-6">
           <FormField
@@ -94,7 +101,26 @@ export function ArtisticTranslatorView() {
           />
         </div>
       )}
-      renderOutput={(output) => <OutputDisplay output={output} />}
+      renderOutput={(output) => (
+        <Tabs defaultValue="artistic" className="w-full h-full flex flex-col" onValueChange={setActiveTab}>
+            <TabsList className="grid w-full grid-cols-2 bg-black/40 border border-white/10">
+                <TabsTrigger value="artistic">Artistic Translation</TabsTrigger>
+                <TabsTrigger value="literal">Literal Translation</TabsTrigger>
+            </TabsList>
+            <div className="flex-grow mt-4 overflow-y-auto">
+                <TabsContent value="artistic">
+                    <div className="text-foreground/80 whitespace-pre-wrap bg-black/20 p-4 rounded-md border border-white/10 min-h-[150px]">
+                        {output?.artisticTranslation || "The artistic translation will appear here."}
+                    </div>
+                </TabsContent>
+                <TabsContent value="literal">
+                    <div className="text-foreground/80 whitespace-pre-wrap bg-black/20 p-4 rounded-md border border-white/10 min-h-[150px]">
+                        {output?.literalTranslation || "The literal translation will appear here."}
+                    </div>
+                </TabsContent>
+            </div>
+        </Tabs>
+      )}
     />
   );
 }

@@ -21,6 +21,7 @@ export function IdeaGenerationView() {
       actionButtonText="Generate Ideas"
       outputTitle="Generated Ideas"
       getExistingOutput={(output) => (output ? { existingIdeas: output.ideas } : {})}
+      getOutputText={(output) => output?.ideas?.join("\n") || ""}
       renderForm={(form) => (
         <FormField
           control={form.control}

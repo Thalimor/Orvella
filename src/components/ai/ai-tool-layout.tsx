@@ -1,10 +1,11 @@
+
 "use client";
 
 import { useState, type ReactNode } from "react";
 import { useForm, type UseFormReturn, type SubmitHandler, useFormState } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { ZodType, z } from "zod";
-import { Loader2, Sparkles } from "lucide-react";
+import { Loader2, Sparkles, Copy } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -20,6 +21,7 @@ interface AiToolLayoutProps<TInput extends object, TOutput> {
   renderForm: (form: UseFormReturn<TInput>) => ReactNode;
   renderOutput: (output: TOutput | null) => ReactNode;
   getExistingOutput: (output: TOutput) => any;
+  getOutputText: (output: TOutput | null) => string;
   actionButtonText?: string;
   outputTitle?: string;
   formContainerClassName?: string;
@@ -32,6 +34,7 @@ export function AiToolLayout<TInput extends object, TOutput>({
   renderForm,
   renderOutput,
   getExistingOutput,
+  getOutputText,
   actionButtonText = "Generate",
   outputTitle = "Result",
 }: AiToolLayoutProps<TInput, TOutput>) {
@@ -79,6 +82,16 @@ export function AiToolLayout<TInput extends object, TOutput>({
     }
   }
 
+  const handleCopy = () => {
+    const textToCopy = getOutputText(output);
+    if (textToCopy) {
+      navigator.clipboard.writeText(textToCopy);
+      toast({
+        title: "Copied to clipboard!",
+      });
+    }
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
       <Card className="glassmorphic p-2">
@@ -101,8 +114,19 @@ export function AiToolLayout<TInput extends object, TOutput>({
       </Card>
 
       <Card className="glassmorphic p-2 min-h-[300px] md:min-h-0 flex flex-col">
-        <CardHeader>
+        <CardHeader className="relative">
             <CardTitle className="text-2xl text-primary">{outputTitle}</CardTitle>
+            {output && getOutputText(output) && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleCopy}
+                className="absolute top-4 right-4 h-8 w-8 text-muted-foreground hover:text-primary hover:bg-white/10"
+                aria-label="Copy output"
+              >
+                <Copy className="h-4 w-4" />
+              </Button>
+            )}
         </CardHeader>
         <CardContent className="p-4 h-full flex flex-col flex-grow">
           <Separator className="mb-4 bg-white/10"/>
