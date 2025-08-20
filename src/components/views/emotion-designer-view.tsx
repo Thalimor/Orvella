@@ -105,7 +105,7 @@ export function EmotionDesignerView() {
         </>
       )}
       renderOutput={(output) => (
-        <div className="text-foreground/80 whitespace-pre-wrap bg-black/20 p-4 rounded-md border border-white/10 h-full">
+        <div className="text-foreground/80 whitespace-pre-wrap bg-black/20 p-4 rounded-md border border-white/10">
           {output?.transformedText || "The transformed text will appear here."}
         </div>
       )}
