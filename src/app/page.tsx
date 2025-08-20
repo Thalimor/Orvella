@@ -1,6 +1,7 @@
 import { OrvellaLogo } from "@/components/logo";
 import { DashboardView } from "@/components/views/dashboard-view";
 import { Button } from "@/components/ui/button";
+import Image from 'next/image';
 
 function Header() {
   return (
@@ -22,10 +23,11 @@ function HeroSection() {
             <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
             <div className="relative container mx-auto px-6">
                 <div className="glassmorphic max-w-3xl mx-auto p-8 md:p-12">
-                    <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4">
+                    <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 flex items-center justify-center gap-4">
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
                             Orvella AI
                         </span>
+                        <Image src="https://files.catbox.moe/76tlv9.png" alt="Orvella Logo" width={60} height={60} className="rounded-full hidden md:block" />
                     </h1>
                     <p className="text-lg md:text-xl text-foreground/80 max-w-xl mx-auto mb-8">
                         Your all-in-one AI suite for content creation and optimization. Enhance, generate, and summarize with powerful AI tools.
