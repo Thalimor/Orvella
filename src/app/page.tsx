@@ -1,3 +1,4 @@
+
 import { OrvellaLogo } from "@/components/logo";
 import { DashboardView } from "@/components/views/dashboard-view";
 import { Button } from "@/components/ui/button";
@@ -6,8 +7,11 @@ import Image from 'next/image';
 function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      <nav className="container mx-auto px-6 py-4 flex justify-start items-center">
+      <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
         <OrvellaLogo />
+        <a href="https://discord.gg/rxJNyg9BUp" target="_blank" rel="noopener noreferrer">
+          <Button variant="outline">Contact Staff</Button>
+        </a>
       </nav>
     </header>
   );
