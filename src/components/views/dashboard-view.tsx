@@ -2,25 +2,26 @@
 
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Edit, FileText, Lightbulb, Bot, FileCode2 } from "lucide-react";
+import { ArrowRight, Edit, FileText, Lightbulb, Bot, Share2, Sparkles } from "lucide-react";
 import { TextRefinementView } from "@/components/views/text-refinement-view";
 import { IdeaGenerationView } from "@/components/views/idea-generation-view";
 import { PromptCreationView } from "@/components/views/prompt-creation-view";
 import { TextSummarizationView } from "@/components/views/text-summarization-view";
 import { TemplatesView } from "@/components/views/templates-view";
+import { ExportShareView } from "@/components/views/export-share-view";
 import { useState } from "react";
 
 const tools = [
   {
-    title: "Smart Notes",
+    title: "AI Text Improver",
     description: "AI-powered text refinement to improve clarity, tone, and style.",
-    icon: Edit,
+    icon: Sparkles,
     view: "refine",
     color: "text-cyan-400",
     shadow: "hover:shadow-[0_0_20px_#00FFCC]",
   },
   {
-    title: "Flexible Organization",
+    title: "AI Idea Generator",
     description: "Use AI to brainstorm fresh ideas and organize your thoughts.",
     icon: Lightbulb,
     view: "ideas",
@@ -28,10 +29,34 @@ const tools = [
     shadow: "hover:shadow-[0_0_20px_#1E90FF]",
   },
   {
-    title: "Cloud Sync",
+    title: "AI Prompt Engineer",
     description: "Generate effective prompts to get the best from any AI model.",
     icon: Bot,
     view: "prompt",
+    color: "text-pink-400",
+    shadow: "hover:shadow-[0_0_20px_#FF69B4]",
+  },
+  {
+    title: "AI Summarizer",
+    description: "Condense large blocks of text into concise summaries using AI.",
+    icon: FileText,
+    view: "summarize",
+    color: "text-cyan-400",
+    shadow: "hover:shadow-[0_0_20px_#00FFCC]",
+  },
+  {
+    title: "Content Templates",
+    description: "Access a library of pre-designed templates for various types of content.",
+    icon: Edit,
+    view: "templates",
+    color: "text-blue-400",
+    shadow: "hover:shadow-[0_0_20px_#1E90FF]",
+  },
+  {
+    title: "Export & Share",
+    description: "Allow exporting notes and ideas in multiple formats and share them easily.",
+    icon: Share2,
+    view: "export",
     color: "text-pink-400",
     shadow: "hover:shadow-[0_0_20px_#FF69B4]",
   },
@@ -48,6 +73,9 @@ export function DashboardView() {
                 {activeView === 'refine' && <TextRefinementView />}
                 {activeView === 'ideas' && <IdeaGenerationView />}
                 {activeView === 'prompt' && <PromptCreationView />}
+                {activeView === 'summarize' && <TextSummarizationView />}
+                {activeView === 'templates' && <TemplatesView />}
+                {activeView === 'export' && <ExportShareView />}
              </div>
         </section>
     )

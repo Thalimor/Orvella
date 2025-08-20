@@ -24,11 +24,11 @@ export function TextSummarizationView() {
           name="text"
           render={({ field }) => (
             <FormItem className="h-full flex flex-col">
-              <FormLabel className="text-primary">Text to Summarize</FormLabel>
+              <FormLabel className="text-primary text-lg mb-2">Text to Summarize</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Paste a long article or text here..."
-                  className="flex-grow resize-none bg-transparent"
+                  className="flex-grow resize-none bg-black/40 border-white/20 focus:border-primary transition-colors duration-300 h-64"
                   {...field}
                 />
               </FormControl>
@@ -38,7 +38,7 @@ export function TextSummarizationView() {
         />
       )}
       renderOutput={(output) => (
-        <div className="text-foreground/80 whitespace-pre-wrap">
+        <div className="text-foreground/80 whitespace-pre-wrap bg-black/20 p-4 rounded-md border border-white/10">
           {output?.summary || "The summary will appear here."}
         </div>
       )}
