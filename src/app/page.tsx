@@ -6,12 +6,8 @@ import Image from 'next/image';
 function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
+      <nav className="container mx-auto px-6 py-4 flex justify-start items-center">
         <OrvellaLogo />
-        <Button variant="ghost" className="text-foreground hover:bg-transparent hover:text-primary transition-colors duration-300 group">
-          Contact
-          <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-primary"></span>
-        </Button>
       </nav>
     </header>
   );
