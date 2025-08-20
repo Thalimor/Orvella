@@ -4,6 +4,7 @@ import Image from 'next/image';
 export function OrvellaLogo(props: SVGProps<SVGSVGElement>) {
   return (
     <div className="flex items-center gap-2">
+        <Image src="https://files.catbox.moe/76tlv9.png" alt="Orvella Logo" width={30} height={30} className="rounded-full" />
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 170 50"
@@ -31,7 +32,6 @@ export function OrvellaLogo(props: SVGProps<SVGSVGElement>) {
                 Orvella
             </text>
         </svg>
-        <Image src="https://files.catbox.moe/76tlv9.png" alt="Orvella Logo" width={30} height={30} className="rounded-full" />
     </div>
   );
 }
