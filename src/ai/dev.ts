@@ -6,3 +6,4 @@ import '@/ai/flows/text-refinement.ts';
 import '@/ai/flows/prompt-engineer.ts';
 import '@/ai/flows/idea-generation.ts';
 import '@/ai/flows/emotion-designer.ts';
+import '@/ai/flows/artistic-translator.ts';

@@ -2,7 +2,7 @@
 
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Edit, FileText, Lightbulb, Bot, Share2, Sparkles, Smile } from "lucide-react";
+import { ArrowRight, Edit, FileText, Lightbulb, Bot, Share2, Sparkles, Smile, Languages } from "lucide-react";
 import { TextRefinementView } from "@/components/views/text-refinement-view";
 import { IdeaGenerationView } from "@/components/views/idea-generation-view";
 import { PromptCreationView } from "@/components/views/prompt-creation-view";
@@ -10,6 +10,7 @@ import { TextSummarizationView } from "@/components/views/text-summarization-vie
 import { TemplatesView } from "@/components/views/templates-view";
 import { ExportShareView } from "@/components/views/export-share-view";
 import { EmotionDesignerView } from "@/components/views/emotion-designer-view";
+import { ArtisticTranslatorView } from "@/components/views/artistic-translator-view";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -55,20 +56,28 @@ const tools = [
     shadow: "hover:shadow-[0_0_20px_#1E90FF]",
   },
   {
+    title: "Artistic Translator",
+    description: "Translate text with a literal and an artistic, literary touch.",
+    icon: Languages,
+    view: "translate",
+    color: "text-pink-400",
+    shadow: "hover:shadow-[0_0_20px_#FF69B4]",
+  },
+  {
     title: "Content Templates",
     description: "Access a library of pre-designed templates for various types of content.",
     icon: Edit,
     view: "templates",
-    color: "text-pink-400",
-    shadow: "hover:shadow-[0_0_20px_#FF69B4]",
+    color: "text-cyan-400",
+    shadow: "hover:shadow-[0_0_20px_#00FFCC]",
   },
   {
     title: "Export & Share",
     description: "Allow exporting notes and ideas in multiple formats and share them easily.",
     icon: Share2,
     view: "export",
-    color: "text-cyan-400",
-    shadow: "hover:shadow-[0_0_20px_#00FFCC]",
+    color: "text-blue-400",
+    shadow: "hover:shadow-[0_0_20px_#1E90FF]",
   },
 ];
 
@@ -78,6 +87,7 @@ const viewComponents: { [key: string]: React.ComponentType } = {
     prompt: PromptCreationView,
     summarize: TextSummarizationView,
     emotion: EmotionDesignerView,
+    translate: ArtisticTranslatorView,
     templates: TemplatesView,
     export: ExportShareView,
 };
@@ -131,7 +141,7 @@ export function DashboardView() {
                       Unlock your creative potential with our suite of intelligent tools.
                   </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {tools.map((tool) => (
                   <Card
                     key={tool.title}
