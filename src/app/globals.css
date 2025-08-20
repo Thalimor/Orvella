@@ -4,10 +4,10 @@
 
 @layer base {
   :root {
-    --background-start-rgb: 18, 18, 18;
-    --background-end-rgb: 26, 26, 26;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
     
-    --background: 224 71% 4%;
+    --background: 0 0% 0%; /* Black */
     --foreground: 210 20% 98%;
 
     --card: 224 71% 4%;
@@ -39,10 +39,10 @@
   }
 
   .dark {
-    --background-start-rgb: 18, 18, 18;
-    --background-end-rgb: 26, 26, 26;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
 
-    --background: 224 71% 4%;
+    --background: 0 0% 0%; /* Black */
     --foreground: 210 20% 98%;
     --card: 224 71% 4%;
     --card-foreground: 210 20% 98%;
@@ -69,8 +69,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
-    background: linear-gradient(to bottom right, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)));
+    @apply bg-black text-foreground;
   }
 }
 
