@@ -24,11 +24,11 @@ export function TextRefinementView() {
           name="text"
           render={({ field }) => (
             <FormItem className="h-full flex flex-col">
-              <FormLabel className="text-primary">Your Text</FormLabel>
+              <FormLabel className="text-primary text-lg mb-2">Your Text</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Enter the text you want to improve..."
-                  className="flex-grow resize-none bg-transparent"
+                  className="flex-grow resize-none bg-black/40 border-white/20 focus:border-primary transition-colors duration-300 h-64"
                   {...field}
                 />
               </FormControl>

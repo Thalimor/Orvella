@@ -4,6 +4,9 @@
 
 @layer base {
   :root {
+    --background-start-rgb: 18, 18, 18;
+    --background-end-rgb: 26, 26, 26;
+    
     --background: 224 71% 4%;
     --foreground: 210 20% 98%;
 
@@ -13,67 +16,51 @@
     --popover: 224 71% 4%;
     --popover-foreground: 210 20% 98%;
 
-    --primary: 165 100% 50%; /* Neon Cyan/Aqua */
+    --primary: 175, 100%, 50%; /* #00FFCC */
     --primary-foreground: 224 71% 4%;
 
-    --secondary: 215 28% 17%;
+    --secondary: 218, 85%, 53%; /* #1E90FF */
     --secondary-foreground: 210 20% 98%;
 
     --muted: 215 28% 17%;
     --muted-foreground: 210 20% 98%;
 
-    --accent: 217 100% 56%; /* Neon Blue */
+    --accent: 336, 100%, 71%; /* #FF69B4 */
     --accent-foreground: 210 20% 98%;
 
-    --destructive: 330 100% 71%; /* Neon Pink */
+    --destructive: 336, 100%, 71%; /* #FF69B4 */
     --destructive-foreground: 210 20% 98%;
 
     --border: 215 28% 17%;
     --input: 215 28% 17%;
-    --ring: 165 100% 50%; /* Use primary for ring */
+    --ring: 175, 100%, 50%;
     
-    --radius: 0.75rem;
-
-    --sidebar-background: 224 71% 4%;
-    --sidebar-foreground: 210 20% 98%;
-    --sidebar-primary: 165 100% 50%;
-    --sidebar-primary-foreground: 224 71% 4%;
-    --sidebar-accent: 215 28% 17%;
-    --sidebar-accent-foreground: 210 20% 98%;
-    --sidebar-border: 215 28% 17%;
-    --sidebar-ring: 165 100% 50%;
+    --radius: 1rem; /* 16px, can be adjusted */
   }
 
   .dark {
-    /* Same as root for a default dark theme */
+    --background-start-rgb: 18, 18, 18;
+    --background-end-rgb: 26, 26, 26;
+
     --background: 224 71% 4%;
     --foreground: 210 20% 98%;
     --card: 224 71% 4%;
     --card-foreground: 210 20% 98%;
     --popover: 224 71% 4%;
     --popover-foreground: 210 20% 98%;
-    --primary: 165 100% 50%;
+    --primary: 175, 100%, 50%;
     --primary-foreground: 224 71% 4%;
-    --secondary: 215 28% 17%;
+    --secondary: 218, 85%, 53%;
     --secondary-foreground: 210 20% 98%;
     --muted: 215 28% 17%;
     --muted-foreground: 210 20% 98%;
-    --accent: 217 100% 56%;
+    --accent: 336, 100%, 71%;
     --accent-foreground: 210 20% 98%;
-    --destructive: 330 100% 71%;
+    --destructive: 336, 100%, 71%;
     --destructive-foreground: 210 20% 98%;
     --border: 215 28% 17%;
     --input: 215 28% 17%;
-    --ring: 165 100% 50%;
-    --radius: 0.75rem;
-    --sidebar-background: 224 71% 4%;
-    --sidebar-foreground: 210 20% 98%;
-    --sidebar-primary: 165 100% 50%;
-    --sidebar-primary-foreground: 224 71% 4%;
-    --sidebar-accent: 215 28% 17%;
-    --sidebar-accent-foreground: 210 20% 98%;
-    --sidebar-border: 215 28% 17%;
-    --sidebar-ring: 165 100% 50%;
+    --ring: 175, 100%, 50%;
   }
 }
 
@@ -83,7 +70,13 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-image: radial-gradient(circle at top right, hsl(var(--accent) / 0.1), transparent 40%),
-                      radial-gradient(circle at bottom left, hsl(var(--destructive) / 0.1), transparent 40%);
+    background: linear-gradient(to bottom right, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)));
   }
+}
+
+@layer components {
+    .glassmorphic {
+        @apply bg-black/60 backdrop-blur-md rounded-2xl border border-white/10;
+        box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    }
 }

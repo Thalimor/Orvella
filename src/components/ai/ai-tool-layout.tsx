@@ -7,7 +7,7 @@ import type { ZodType, z } from "zod";
 import { Loader2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { Separator } from "@/components/ui/separator";
@@ -61,15 +61,15 @@ export function AiToolLayout<TInput extends object, TOutput>({
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full p-4 md:p-6">
-      <Card className="bg-black/60 backdrop-blur-md border border-white/10 p-2">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
+      <Card className="glassmorphic p-2">
         <CardContent className="p-4 h-full">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex flex-col h-full">
               <div className="flex-grow">
                 {renderForm(form)}
               </div>
-              <Button type="submit" disabled={isLoading} className="w-full bg-primary hover:bg-primary/80 text-primary-foreground">
+              <Button type="submit" disabled={isLoading} className="w-full" variant="outline">
                 {isLoading ? (
                   <Loader2 className="animate-spin" />
                 ) : (
@@ -81,9 +81,11 @@ export function AiToolLayout<TInput extends object, TOutput>({
         </CardContent>
       </Card>
 
-      <Card className="bg-black/60 backdrop-blur-md border border-white/10 p-2 min-h-[300px] md:min-h-0">
+      <Card className="glassmorphic p-2 min-h-[300px] md:min-h-0">
+        <CardHeader>
+            <CardTitle className="text-2xl text-primary">{outputTitle}</CardTitle>
+        </CardHeader>
         <CardContent className="p-4 h-full flex flex-col">
-          <h3 className="text-lg font-semibold mb-2 text-primary">{outputTitle}</h3>
           <Separator className="mb-4 bg-white/10"/>
           <div className="flex-grow overflow-y-auto text-foreground/90">
              {isLoading ? (

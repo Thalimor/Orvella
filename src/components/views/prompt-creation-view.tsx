@@ -24,11 +24,11 @@ export function PromptCreationView() {
           name="intention"
           render={({ field }) => (
             <FormItem className="h-full flex flex-col">
-              <FormLabel className="text-primary">Your Intention</FormLabel>
+              <FormLabel className="text-primary text-lg mb-2">Your Intention</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Describe what you want the AI to do. e.g., 'Create a marketing slogan for a new coffee brand that is eco-friendly.'"
-                  className="flex-grow resize-none bg-transparent"
+                  className="flex-grow resize-none bg-black/40 border-white/20 focus:border-primary transition-colors duration-300 h-64"
                   {...field}
                 />
               </FormControl>

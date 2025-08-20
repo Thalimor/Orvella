@@ -1,100 +1,63 @@
-"use client";
-
-import { useState } from "react";
-import {
-  SidebarProvider,
-  Sidebar,
-  SidebarHeader,
-  SidebarContent,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-  SidebarInset,
-  SidebarTrigger,
-  useSidebar,
-} from "@/components/ui/sidebar";
-import { Bot, Home as HomeIcon, Edit, FileText, Lightbulb, FileCode2 } from "lucide-react";
 import { OrvellaLogo } from "@/components/logo";
 import { DashboardView } from "@/components/views/dashboard-view";
-import { TextRefinementView } from "@/components/views/text-refinement-view";
-import { IdeaGenerationView } from "@/components/views/idea-generation-view";
-import { PromptCreationView } from "@/components/views/prompt-creation-view";
-import { TextSummarizationView } from "@/components/views/text-summarization-view";
-import { TemplatesView } from "@/components/views/templates-view";
 import { Button } from "@/components/ui/button";
 
-const navItems = [
-  { id: "dashboard", label: "Dashboard", icon: HomeIcon },
-  { id: "refine", label: "Text Refinement", icon: Edit },
-  { id: "ideas", label: "Idea Generation", icon: Lightbulb },
-  { id: "prompt", label: "Prompt Engineer", icon: Bot },
-  { id: "summarize", label: "Text Summarization", icon: FileText },
-  { id: "templates", label: "Templates", icon: FileCode2 },
-];
-
-function MainContent({ activeView, setActiveView }: { activeView: string, setActiveView: (view: string) => void }) {
-  switch (activeView) {
-    case "refine":
-      return <TextRefinementView />;
-    case "ideas":
-      return <IdeaGenerationView />;
-    case "prompt":
-      return <PromptCreationView />;
-    case "summarize":
-      return <TextSummarizationView />;
-    case "templates":
-      return <TemplatesView />;
-    default:
-      return <DashboardView setActiveView={setActiveView} />;
-  }
+function Header() {
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50">
+      <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
+        <OrvellaLogo />
+        <Button variant="ghost" className="text-foreground hover:bg-transparent hover:text-primary transition-colors duration-300 group">
+          Contact
+          <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-primary"></span>
+        </Button>
+      </nav>
+    </header>
+  );
 }
 
-function Header() {
-    const { isMobile } = useSidebar();
-    if (!isMobile) return null;
-
+function HeroSection() {
     return (
-        <header className="sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b bg-background/80 backdrop-blur-sm px-4">
-            <SidebarTrigger className="md:hidden"/>
-            <div className="flex items-center gap-2">
-                <OrvellaLogo />
+        <section className="relative pt-32 pb-16 md:pt-48 md:pb-24 flex items-center justify-center text-center">
+            <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+            <div className="relative container mx-auto px-6">
+                <div className="glassmorphic max-w-3xl mx-auto p-8 md:p-12">
+                    <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+                            Orvella AI
+                        </span>
+                    </h1>
+                    <p className="text-lg md:text-xl text-foreground/80 max-w-xl mx-auto mb-8">
+                        Your all-in-one AI suite for content creation and optimization. Enhance, generate, and summarize with powerful AI tools.
+                    </p>
+                    <a href="#tools">
+                        <Button size="lg" className="bg-accent text-white hover:bg-accent/90 hover:shadow-[0_0_20px_theme(colors.accent)] transition-all duration-300 transform hover:-translate-y-1">
+                            Get Started
+                        </Button>
+                    </a>
+                </div>
             </div>
-        </header>
+        </section>
+    );
+}
+
+function Footer() {
+    return (
+        <footer className="py-8 text-center text-foreground/50">
+            <p>&copy; {new Date().getFullYear()} Orvella. All rights reserved.</p>
+        </footer>
     );
 }
 
 export default function Home() {
-  const [activeView, setActiveView] = useState("dashboard");
-
   return (
-    <SidebarProvider>
-      <Sidebar side="left" collapsible="icon" className="bg-background/80 backdrop-blur-sm border-r border-white/10">
-        <SidebarHeader>
-          <OrvellaLogo />
-        </SidebarHeader>
-        <SidebarContent>
-          <SidebarMenu>
-            {navItems.map((item) => (
-              <SidebarMenuItem key={item.id}>
-                <SidebarMenuButton
-                  onClick={() => setActiveView(item.id)}
-                  isActive={activeView === item.id}
-                  tooltip={item.label}
-                >
-                  <item.icon />
-                  <span>{item.label}</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
-          </SidebarMenu>
-        </SidebarContent>
-      </Sidebar>
-      <SidebarInset>
-        <Header />
-        <main className="flex-1 overflow-auto h-[calc(100vh-57px)] md:h-screen">
-            <MainContent activeView={activeView} setActiveView={setActiveView}/>
-        </main>
-      </SidebarInset>
-    </SidebarProvider>
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main className="flex-1">
+        <HeroSection />
+        <DashboardView />
+      </main>
+      <Footer />
+    </div>
   );
 }
