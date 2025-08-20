@@ -18,6 +18,7 @@ export function TextSummarizationView() {
       aiFunction={summarizeText}
       actionButtonText="Summarize Text"
       outputTitle="Summary"
+      getExistingOutput={(output) => ({ existingSummary: output.summary })}
       renderForm={(form) => (
         <FormField
           control={form.control}
@@ -38,7 +39,7 @@ export function TextSummarizationView() {
         />
       )}
       renderOutput={(output) => (
-        <div className="text-foreground/80 whitespace-pre-wrap bg-black/20 p-4 rounded-md border border-white/10">
+        <div className="text-foreground/80 whitespace-pre-wrap bg-black/20 p-4 rounded-md border border-white/10 min-h-[150px]">
           {output?.summary || "The summary will appear here."}
         </div>
       )}

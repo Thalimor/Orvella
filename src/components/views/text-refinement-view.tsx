@@ -18,6 +18,7 @@ export function TextRefinementView() {
       aiFunction={refineText}
       actionButtonText="Refine Text"
       outputTitle="Refined Text"
+      getExistingOutput={(output) => ({ existingRefinedText: output.refinedText })}
       renderForm={(form) => (
         <FormField
           control={form.control}
@@ -38,7 +39,7 @@ export function TextRefinementView() {
         />
       )}
       renderOutput={(output) => (
-        <div className="text-foreground/80 whitespace-pre-wrap">
+        <div className="text-foreground/80 whitespace-pre-wrap bg-black/20 p-4 rounded-md border border-white/10 min-h-[150px]">
           {output?.refinedText || "The refined text will appear here."}
         </div>
       )}

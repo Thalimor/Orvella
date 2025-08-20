@@ -44,6 +44,12 @@ export function ArtisticTranslatorView() {
       aiFunction={translateArtistically}
       actionButtonText="Translate Artistically"
       outputTitle="Translation"
+      getExistingOutput={(output) => ({ 
+        existingTranslation: {
+            literal: output.literalTranslation,
+            artistic: output.artisticTranslation,
+        }
+      })}
       renderForm={(form) => (
         <div className="flex flex-col h-full gap-6">
           <FormField

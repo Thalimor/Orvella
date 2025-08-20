@@ -33,8 +33,9 @@ export function EmotionDesignerView() {
       aiFunction={transformTextEmotion}
       actionButtonText="Transform Text"
       outputTitle="Emotionally Transformed Text"
+      getExistingOutput={(output) => ({ existingTransformedText: output.transformedText })}
       renderForm={(form) => (
-        <>
+        <div className="flex flex-col h-full">
           <FormField
             control={form.control}
             name="text"
@@ -44,7 +45,7 @@ export function EmotionDesignerView() {
                 <FormControl>
                   <Textarea
                     placeholder="Enter the text you want to transform..."
-                    className="resize-none bg-black/40 border-white/20 focus:border-primary transition-colors duration-300 h-40"
+                    className="resize-none bg-black/40 border-white/20 focus:border-primary transition-colors duration-300 h-24"
                     {...field}
                   />
                 </FormControl>
@@ -55,7 +56,7 @@ export function EmotionDesignerView() {
 
           <FormLabel className="text-primary text-lg mb-2">Choose an Emotion</FormLabel>
           
-          <ScrollArea className="h-64 w-full p-4 rounded-md border border-white/10 bg-black/20">
+          <ScrollArea className="h-48 w-full p-4 rounded-md border border-white/10 bg-black/20 mb-4">
             {Object.entries(emotionCategories).map(([category, emotions]) => (
                 <div key={category} className="mb-6">
                     <h4 className="text-secondary font-semibold mb-3">{category}</h4>
@@ -85,7 +86,7 @@ export function EmotionDesignerView() {
             control={form.control}
             name="emotion"
             render={() => (
-              <FormItem className="mt-4">
+              <FormItem>
                 <FormLabel className="text-muted-foreground text-sm">Or type a custom emotion</FormLabel>
                 <FormControl>
                   <Input 
@@ -102,7 +103,7 @@ export function EmotionDesignerView() {
               </FormItem>
             )}
           />
-        </>
+        </div>
       )}
       renderOutput={(output) => (
         <div className="text-foreground/80 whitespace-pre-wrap bg-black/20 p-4 rounded-md border border-white/10">

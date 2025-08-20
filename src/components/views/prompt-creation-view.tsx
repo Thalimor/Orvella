@@ -18,6 +18,7 @@ export function PromptCreationView() {
       aiFunction={generatePrompt}
       actionButtonText="Engineer Prompt"
       outputTitle="Engineered Prompt"
+      getExistingOutput={(output) => ({ existingPrompt: output.prompt })}
       renderForm={(form) => (
         <FormField
           control={form.control}
@@ -38,7 +39,7 @@ export function PromptCreationView() {
         />
       )}
       renderOutput={(output) => (
-        <div className="text-foreground/80 whitespace-pre-wrap bg-black/20 p-4 rounded-md border border-white/10">
+        <div className="text-foreground/80 whitespace-pre-wrap bg-black/20 p-4 rounded-md border border-white/10 min-h-[150px]">
           {output?.prompt || "The engineered prompt will appear here."}
         </div>
       )}

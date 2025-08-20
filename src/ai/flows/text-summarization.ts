@@ -13,6 +13,8 @@ import {z} from 'genkit';
 
 const SummarizeTextInputSchema = z.object({
   text: z.string().describe('The text to summarize.'),
+  existingSummary: z.string().optional().describe('An existing summary to be refined.'),
+  refinementInstruction: z.string().optional().describe('Instructions on how to refine the existing summary.'),
 });
 export type SummarizeTextInput = z.infer<typeof SummarizeTextInputSchema>;
 
@@ -29,7 +31,23 @@ const prompt = ai.definePrompt({
   name: 'summarizeTextPrompt',
   input: {schema: SummarizeTextInputSchema},
   output: {schema: SummarizeTextOutputSchema},
-  prompt: `Summarize the following text:\n\n{{text}}`,
+  prompt: `{{#if refinementInstruction}}
+You are refining a previous summary based on user feedback.
+
+Original Text: 
+"{{{text}}}"
+
+Previous Summary:
+"{{{existingSummary}}}"
+
+User's Refinement Instruction: "{{{refinementInstruction}}}"
+
+Based on the instruction, generate a new, improved summary.
+{{else}}
+Summarize the following text:
+
+"{{text}}"
+{{/if}}`,
 });
 
 const summarizeTextFlow = ai.defineFlow(
@@ -40,8 +58,6 @@ const summarizeTextFlow = ai.defineFlow(
   },
   async input => {
     const {output} = await prompt(input);
-    return {
-      ...output,
-      progress: 'Text summarization flow initialized successfully.',
-    }} 
+    return output!;
+  }
 );

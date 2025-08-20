@@ -16,6 +16,8 @@ const GeneratePromptInputSchema = z.object({
   intention: z
     .string()
     .describe('The user intention for which to generate an AI prompt.'),
+  existingPrompt: z.string().optional().describe('An existing prompt to be refined.'),
+  refinementInstruction: z.string().optional().describe('Instructions on how to refine the existing prompt.'),
 });
 export type GeneratePromptInput = z.infer<typeof GeneratePromptInputSchema>;
 
@@ -32,11 +34,23 @@ const prompt = ai.definePrompt({
   name: 'generatePromptPrompt',
   input: {schema: GeneratePromptInputSchema},
   output: {schema: GeneratePromptOutputSchema},
-  prompt: `You are an AI prompt engineer. Your job is to create effective prompts for other AI models, based on the user's stated intention.
+  prompt: `You are an AI prompt engineer. Your job is to create effective prompts for other AI models.
+
+{{#if refinementInstruction}}
+You are refining a previously generated prompt based on user feedback.
+
+User's Intention: "{{{intention}}}"
+Previous Prompt: "{{{existingPrompt}}}"
+User's Refinement Instruction: "{{{refinementInstruction}}}"
+
+Based on the instruction, generate a new, improved prompt.
+{{else}}
+Your job is to create an effective prompt for an AI model based on the user's stated intention.
 
 Intention: {{{intention}}}
+{{/if}}
 
-Effective Prompt:`, // crucial change
+Effective Prompt:`,
 });
 
 const generatePromptFlow = ai.defineFlow(
