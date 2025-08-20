@@ -2,13 +2,14 @@
 
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Edit, FileText, Lightbulb, Bot, Share2, Sparkles } from "lucide-react";
+import { ArrowRight, Edit, FileText, Lightbulb, Bot, Share2, Sparkles, Smile } from "lucide-react";
 import { TextRefinementView } from "@/components/views/text-refinement-view";
 import { IdeaGenerationView } from "@/components/views/idea-generation-view";
 import { PromptCreationView } from "@/components/views/prompt-creation-view";
 import { TextSummarizationView } from "@/components/views/text-summarization-view";
 import { TemplatesView } from "@/components/views/templates-view";
 import { ExportShareView } from "@/components/views/export-share-view";
+import { EmotionDesignerView } from "@/components/views/emotion-designer-view";
 import { useState } from "react";
 
 const tools = [
@@ -45,20 +46,28 @@ const tools = [
     shadow: "hover:shadow-[0_0_20px_#00FFCC]",
   },
   {
+    title: "Emotion Designer",
+    description: "Transform your text with a wide range of emotional tones.",
+    icon: Smile,
+    view: "emotion",
+    color: "text-blue-400",
+    shadow: "hover:shadow-[0_0_20px_#1E90FF]",
+  },
+  {
     title: "Content Templates",
     description: "Access a library of pre-designed templates for various types of content.",
     icon: Edit,
     view: "templates",
-    color: "text-blue-400",
-    shadow: "hover:shadow-[0_0_20px_#1E90FF]",
+    color: "text-pink-400",
+    shadow: "hover:shadow-[0_0_20px_#FF69B4]",
   },
   {
     title: "Export & Share",
     description: "Allow exporting notes and ideas in multiple formats and share them easily.",
     icon: Share2,
     view: "export",
-    color: "text-pink-400",
-    shadow: "hover:shadow-[0_0_20px_#FF69B4]",
+    color: "text-cyan-400",
+    shadow: "hover:shadow-[0_0_20px_#00FFCC]",
   },
 ];
 
@@ -74,6 +83,7 @@ export function DashboardView() {
                 {activeView === 'ideas' && <IdeaGenerationView />}
                 {activeView === 'prompt' && <PromptCreationView />}
                 {activeView === 'summarize' && <TextSummarizationView />}
+                {activeView === 'emotion' && <EmotionDesignerView />}
                 {activeView === 'templates' && <TemplatesView />}
                 {activeView === 'export' && <ExportShareView />}
              </div>
