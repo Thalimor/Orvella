@@ -1,3 +1,4 @@
+
 "use client";
 
 import { z } from "zod";
@@ -18,7 +19,7 @@ export function TextRefinementView() {
       aiFunction={refineText}
       actionButtonText="Refine Text"
       outputTitle="Refined Text"
-      getExistingOutput={(output) => ({ existingRefinedText: output.refinedText })}
+      getExistingOutput={(output) => (output ? { existingRefinedText: output.refinedText } : {})}
       renderForm={(form) => (
         <FormField
           control={form.control}

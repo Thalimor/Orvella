@@ -1,3 +1,4 @@
+
 "use client";
 
 import { z } from "zod";
@@ -18,7 +19,7 @@ export function PromptCreationView() {
       aiFunction={generatePrompt}
       actionButtonText="Engineer Prompt"
       outputTitle="Engineered Prompt"
-      getExistingOutput={(output) => ({ existingPrompt: output.prompt })}
+      getExistingOutput={(output) => (output ? { existingPrompt: output.prompt } : {})}
       renderForm={(form) => (
         <FormField
           control={form.control}

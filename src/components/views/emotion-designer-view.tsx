@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -33,7 +34,7 @@ export function EmotionDesignerView() {
       aiFunction={transformTextEmotion}
       actionButtonText="Transform Text"
       outputTitle="Emotionally Transformed Text"
-      getExistingOutput={(output) => ({ existingTransformedText: output.transformedText })}
+      getExistingOutput={(output) => (output ? { existingTransformedText: output.transformedText } : {})}
       renderForm={(form) => (
         <div className="flex flex-col h-full">
           <FormField

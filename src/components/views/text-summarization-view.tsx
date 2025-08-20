@@ -1,3 +1,4 @@
+
 "use client";
 
 import { z } from "zod";
@@ -18,7 +19,7 @@ export function TextSummarizationView() {
       aiFunction={summarizeText}
       actionButtonText="Summarize Text"
       outputTitle="Summary"
-      getExistingOutput={(output) => ({ existingSummary: output.summary })}
+      getExistingOutput={(output) => (output ? { existingSummary: output.summary } : {})}
       renderForm={(form) => (
         <FormField
           control={form.control}
