@@ -3,6 +3,7 @@ import { OrvellaLogo } from "@/components/logo";
 import { DashboardView } from "@/components/views/dashboard-view";
 import { Button } from "@/components/ui/button";
 import Image from 'next/image';
+import Link from 'next/link';
 
 function Header() {
   return (
@@ -65,7 +66,10 @@ function Footer() {
                         ))}
                     </div>
                 </div>
-                <p className="mt-6">&copy; {new Date().getFullYear()} Orvella. All rights reserved.</p>
+                <div className="mt-6 flex justify-center gap-4">
+                    <p>&copy; {new Date().getFullYear()} Orvella. All rights reserved.</p>
+                    <Link href="/policies" className="hover:text-primary transition-colors">Policies</Link>
+                </div>
             </div>
         </footer>
     );
