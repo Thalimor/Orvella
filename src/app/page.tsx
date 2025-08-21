@@ -44,9 +44,29 @@ function HeroSection() {
 }
 
 function Footer() {
+    const socialLinks = [
+        { name: "Discord", href: "https://discord.gg/rxJNyg9BUp", icon: "https://files.catbox.moe/otokzd.png" },
+        { name: "Twitter", href: "https://x.com/Orvella_ai", icon: "https://files.catbox.moe/4niq18.png" },
+        { name: "Facebook", href: "https://www.facebook.com/share/175WDeeDZ3/", icon: "https://files.catbox.moe/txew9z.png" },
+        { name: "Instagram", href: "https://www.instagram.com/orvella_ai", icon: "https://files.catbox.moe/opowh7.png" },
+        { name: "Youtube", href: "https://www.youtube.com/@Orvella-AI", icon: "https://files.catbox.moe/ck6v9n.png" },
+    ];
+
     return (
         <footer className="py-8 text-center text-foreground/50">
-            <p>&copy; {new Date().getFullYear()} Orvella. All rights reserved.</p>
+            <div className="container mx-auto px-6">
+                <div className="mb-4">
+                    <p className="text-lg font-semibold text-white mb-3">Follow us</p>
+                    <div className="flex justify-center items-center space-x-6">
+                        {socialLinks.map((link) => (
+                            <a key={link.name} href={link.href} target="_blank" rel="noopener noreferrer" className="transition-transform duration-300 hover:scale-110">
+                                <Image src={link.icon} alt={link.name} width={32} height={32} className="rounded-full" />
+                            </a>
+                        ))}
+                    </div>
+                </div>
+                <p className="mt-6">&copy; {new Date().getFullYear()} Orvella. All rights reserved.</p>
+            </div>
         </footer>
     );
 }
